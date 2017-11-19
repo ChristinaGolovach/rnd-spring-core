@@ -28,6 +28,6 @@ public class Event {
 
     @Override
     public String toString(){
-        return "idEvent - " + id +"\nmessageEvent - " + message + "\ndateEvent - " +date + " " +dateFormat.format(date);
+        return "\r\nidEvent - " + id +"\nmessageEvent - " + message + "\ndateEvent - " +date + " " +dateFormat.format(date);
     }
 }

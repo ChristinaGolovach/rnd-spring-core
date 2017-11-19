@@ -1,6 +1,7 @@
 package com.rnd.golovach;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -19,11 +20,24 @@ public class App {
     }
 
     public  static  void main(String[] arg){
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) context.getBean("app");
+
         Event event = (Event) context.getBean("event");
         event.setMessage("Call event for user 1");
         app.logEvent(event);
+
+        Event event2 = (Event) context.getBean("event");
+        event2.setMessage("Call event for user 2");
+        app.logEvent(event2);
+
+        Event event3 = (Event) context.getBean("event");
+        event3.setMessage("Call event for user 3");
+        app.logEvent(event3);
+
+
+
+        context.close();
 
     }
 }

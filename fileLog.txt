@@ -1,0 +1,33 @@
+idEvent - 63
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 15:56:02 MSK 2017 Nov 19, 2017 3:56:02 PM
+idEvent - 45
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 16:03:44 MSK 2017 Nov 19, 2017 4:03:44 PM
+idEvent - 13
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 16:06:07 MSK 2017 Nov 19, 2017 4:06:07 PM
+idEvent - 52
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 16:06:39 MSK 2017 Nov 19, 2017 4:06:39 PM
+idEvent - 60
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 16:09:54 MSK 2017 Nov 19, 2017 4:09:54 PM
+idEvent - 79
+messageEvent - Call event for user 2
+dateEvent - Sun Nov 19 17:13:06 MSK 2017 Nov 19, 2017 5:13:06 PM
+idEvent - 79
+messageEvent - Call event for user 2
+dateEvent - Sun Nov 19 17:13:06 MSK 2017 Nov 19, 2017 5:13:06 PM
+idEvent - 79
+messageEvent - Call event for user 3
+dateEvent - Sun Nov 19 17:13:06 MSK 2017 Nov 19, 2017 5:13:06 PM
+idEvent - 69
+messageEvent - Call event for user Chris
+dateEvent - Sun Nov 19 17:15:40 MSK 2017 Nov 19, 2017 5:15:40 PM
+idEvent - 49
+messageEvent - Call event for user 2
+dateEvent - Sun Nov 19 17:15:40 MSK 2017 Nov 19, 2017 5:15:40 PM
+idEvent - 3
+messageEvent - Call event for user 3
+dateEvent - Sun Nov 19 17:15:40 MSK 2017 Nov 19, 2017 5:15:40 PM
