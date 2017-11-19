@@ -1,6 +1,5 @@
 package com.rnd.golovach;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,7 +9,7 @@ public class App {
 
     public  void logEvent(Event event){
         String msg = event.getMessage().replaceAll(client.getId(),client.getFullName());
-        event.setMessage(msg);
+        event.setMessage(client.getGreeting() + " " + msg);
         eventLogger.logEvent(event);
     }
 
