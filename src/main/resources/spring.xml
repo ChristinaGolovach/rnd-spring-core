@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
     <import resource="loggers.xml"/>
 
-    <bean id="client" class="com.rnd.golovach.Client">
-        <constructor-arg type="java.lang.String" value="1"/>
-        <constructor-arg type="java.lang.String" value="Chris"/>
-        <property name="greeting" value="Hello!"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:client.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
     </bean>
 
-    <bean id="app" class="com.rnd.golovach.App">
-        <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileEventLogger"/>
-        <constructor-arg>
-            <map key-type="com.rnd.golovach.EventType">
-                <entry key="INFO" value-ref="consoleEventLogger"/>
-                <entry key="ERROR" value-ref="combinedEventLogger"/>
-            </map>
-        </constructor-arg>
+    <bean id="client" class="com.rnd.golovach.Client"  p:greeting="${greeting}">
+        <constructor-arg value="${id}"/>
+        <constructor-arg value="${name}"/>
     </bean>
+
+    <bean id="app" class="com.rnd.golovach.App" c:client-ref="client" c:eventLogger-ref="cacheFileEventLogger" c:loggers-ref="loggerMap"/>
+
 
     <bean id="event" class="com.rnd.golovach.Event" scope="prototype">
         <constructor-arg>
@@ -39,7 +44,11 @@
                 <ref bean="fileEventLogger"/>
             </list>
         </constructor-arg>
-
     </bean>
+
+    <util:map id="loggerMap">
+        <entry key="INFO" value-ref="consoleEventLogger"/>
+        <entry key="ERROR" value-ref="combinedEventLogger"/>
+    </util:map>
 
 </beans>
