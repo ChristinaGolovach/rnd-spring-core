@@ -15,6 +15,12 @@
     <bean id="app" class="com.rnd.golovach.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg>
+            <map key-type="com.rnd.golovach.EventType">
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <bean id="event" class="com.rnd.golovach.Event" scope="prototype">
@@ -24,6 +30,16 @@
         <constructor-arg>
             <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
         </constructor-arg>
+    </bean>
+
+    <bean id="combinedEventLogger" class="com.rnd.golovach.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
+
     </bean>
 
 </beans>

@@ -3,19 +3,32 @@ package com.rnd.golovach;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class App {
     private  Client client;
-    private IEventLogger eventLogger;
+    private IEventLogger defaultLogger;
+    private Map<EventType,IEventLogger> loggers;
 
-    public  void logEvent(Event event){
-        String msg = event.getMessage().replaceAll(client.getId(),client.getFullName());
+    public  void logEvent(Event event, EventType type, String message){
+        String msg  = message.replaceAll(client.getId(), client.getFullName());
+
         event.setMessage(client.getGreeting() + " " + msg);
-        eventLogger.logEvent(event);
+
+        IEventLogger logger  = loggers.get(type);
+
+        if (logger == null){
+            logger = defaultLogger;
+        }
+
+        logger.logEvent(event);
     }
 
-    public App (Client client, IEventLogger eventLogger){
+    public App (Client client, IEventLogger eventLogger, Map<EventType,IEventLogger> loggers){
         this.client = client;
-        this.eventLogger = eventLogger;
+        this.defaultLogger = eventLogger;
+        this.loggers = loggers;
     }
 
     public  static  void main(String[] arg){
@@ -23,18 +36,10 @@ public class App {
         App app = (App) context.getBean("app");
 
         Event event = (Event) context.getBean("event");
-        event.setMessage("Call event for user 1");
-        app.logEvent(event);
 
-        Event event2 = (Event) context.getBean("event");
-        event2.setMessage("Call event for user 2");
-        app.logEvent(event2);
-
-        Event event3 = (Event) context.getBean("event");
-        event3.setMessage("Call event for user 3");
-        app.logEvent(event3);
-
-
+        app.logEvent(event,EventType.INFO,"Call event for user 1");
+        app.logEvent(event,null,"Call event for user 1");
+        app.logEvent(event,EventType.ERROR,"Call event for user 1");
 
         context.close();
 

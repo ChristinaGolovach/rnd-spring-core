@@ -31,3 +31,5 @@ public class Event {
         return "\r\nidEvent - " + id +"\nmessageEvent - " + message + "\ndateEvent - " +date + " " +dateFormat.format(date);
     }
 }
+
+

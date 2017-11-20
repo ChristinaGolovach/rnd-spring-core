@@ -30,7 +30,7 @@ public class CacheFileEventLogger extends FileEventLogger {
     }
 
     public void destroy(){
-        if (! cache.isEmpty())
+        if (!cache.isEmpty())
             writeEventFromCache();
     }
 }
